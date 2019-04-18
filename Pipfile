@@ -7,6 +7,9 @@ verify_ssl = true
 
 [packages]
 fastapi = {extras = ["all"],version = "*"}
+pep8 = "*"
+pycodestyle = "*"
+redis = "*"
 
 [requires]
 python_version = "3.7"
