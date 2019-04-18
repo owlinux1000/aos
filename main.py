@@ -8,10 +8,9 @@ from starlette.responses import JSONResponse
 import hashlib
 import sys
 import os
-import redis
 
-redis = redis.Redis(host='localhost', port=6379, db=0)
 app = FastAPI()
+SAVE_DIRECTORY = os.getenv('AOS_SAVE_DIRECTORY') or "tmp"
 
 
 @app.get("/meta/{block_id}", response_model=ResponseMeta)
@@ -55,8 +54,12 @@ async def get_block_data(block_id: str):
 
 @app.delete("/block/{block_id}")
 async def delete_block(block_id):
-    return {"status": "success"}
-
+    path = "/tmp/{}".format(block_id)
+    if os.path.exists(path):
+        os.remove(path)
+        return {"status": "success"}
+    else:
+        return {"status": "failed"}
 
 @app.post("/block", response_model=ResponseMeta, status_code=HTTP_201_CREATED)
 async def post_block(file: UploadFile = File(...)):
