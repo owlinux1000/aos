@@ -9,6 +9,7 @@ from starlette.responses import JSONResponse
 import hashlib
 import sys
 import os
+import uvicorn
 
 app = FastAPI()
 SAVE_DIRECTORY = Path(os.getenv('AOS_SAVE_DIRECTORY') or "/tmp")
@@ -94,3 +95,6 @@ async def post_block(file: UploadFile = File(...)):
     response_meta.status = "success"
     response_meta.meta = block.meta
     return response_meta
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000, log_level="info", reload=True)
