@@ -14,4 +14,11 @@ AOS provided the following RESTful API
 
 ## Deploy
 
-- TBD
+You can easy to use AOS via Docker!
+
+```
+git clone https://github.com/owlinux1000/aos
+cd aos
+docker build -t aos:latest .
+docker run -p 8000:8000 aos:latest
+```
