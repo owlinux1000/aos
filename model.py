@@ -27,16 +27,19 @@ class Block(BaseModel):
 class ResponseMeta(BaseModel):
     # success or failed
     status: str = None
+    why: str = None
     meta: Meta = None
 
 
 class ResponseBlock(BaseModel):
     # success or failed
     status: str = None
+    why: str = None
     block: Block = None
 
 
 class ResponseBlockData(BaseModel):
     # success or failed
     status: str = None
+    why: str = None
     data: bytes = None
