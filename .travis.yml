@@ -1,11 +1,12 @@
+dist: xenial
 language: python
 
 python:
   - "3.7.0"
   
 script:
-  - pip install fastapi[all]
-  - pip install pycodestyle
+  - pip install pipenv
+  - pipenv install
   - pycodestyle *.py
   
 notifications:
